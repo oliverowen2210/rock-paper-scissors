@@ -1,3 +1,3 @@
 # rockpaperscissors
 
-Rock Paper Scissors project for Odin
+A simple console-based Rock Paper Scissors game for the Odin Project's curriculum.
