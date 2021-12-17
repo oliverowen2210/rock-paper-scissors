@@ -1,17 +1,18 @@
 function toTitleCase(str) {
-    return str.charAt(0).toUpperCase() + str.substr(1);
+    return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 }
 
 function computerPlay() {
-    chosenObject = Math.floor(Math.random() * (10 - 1) + 1);
-    if (chosenObject <= 3) {
+    // pick random number between 1 through 9, inclusive
+    objectSelector = Math.floor(Math.random() * (10 - 1) + 1);
+    if (objectSelector <= 3) {
         return "rock";
-    } else if (chosenObject <= 6) {
+    } else if (objectSelector <= 6) {
         return "paper";
     } else return "scissors";
 }
 
-function rockPaperScissors(playerSelection, computerSelection) {
+function playGame(playerSelection, computerSelection) {
     if(playerSelection.toLowerCase()=="rock") {
         switch(computerSelection) {
             case "paper": 
@@ -42,24 +43,27 @@ function rockPaperScissors(playerSelection, computerSelection) {
     } else return false;
 }
 
+
 function game() {
     let playerWins = 0;
     let computerWins = 0;
     while (playerWins < 3 && computerWins < 3) {
         let playerSelection = prompt("Rock, paper, scissors");
         let computerSelection = computerPlay();
-        result = (rockPaperScissors(playerSelection, computerSelection));
+        result = (playGame(playerSelection, computerSelection));
         if(result=="win") {
-            playerWins++;
             console.log(`You win! ${toTitleCase(playerSelection)} beats ${computerSelection}.`)
+            playerWins++;
         } else if(result=="lose") {
             console.log(`You lose! ${toTitleCase(computerSelection)} beats ${playerSelection}.`)
             computerWins++;
         } else if(result=="tie") {
             console.log("It's a tie.");
         } else console.log("Invalid input.");
-        console.log(playerWins, computerWins);        
-    return (playerWins > computerWins) ? true : false;
-    }
-}
+        console.log(playerWins, computerWins);   
+    }     
 
+    if(playerWins > computerWins) {
+        return true;
+    } else return false;
+}
